@@ -97,24 +97,28 @@ E-Commerce-Sales-Analytics/
 ├── dataset_statistics.csv
 │
 └── README.md
+```
+## 📊 Dashboard Screenshots
 
-## Dashboard Screenshots
+### Executive Overview & Sales Revenue
 
-### 01 — Executive Overview
-![Executive Overview](ScreenShots/01-executive-overview.png)
+<p align="center">
+  <img src="ScreenShots/01-executive-overview.png" width="48%" />
+  <img src="ScreenShots/02-sales-revenue.png" width="48%" />
+</p>
 
-### 02 — Sales & Revenue
-![Sales & Revenue](ScreenShots/02-sales-revenue.png)
+### Customer Analytics & Product Analytics
 
-### 03 — Customer Analytics
-![Customer Analytics](ScreenShots/03-customer-analytics.png)
+<p align="center">
+  <img src="ScreenShots/03-customer-analytics.png" width="48%" />
+  <img src="ScreenShots/04-product-analytics.png" width="48%" />
+</p>
 
-### 04 — Product Analytics
-![Product Analytics](ScreenShots/04-product-analytics.png)
+### Operations & Delivery Analytics
 
-### 05 — Operations & Delivery Analytics
-![Operations & Delivery Analytics](ScreenShots/05-operations-delivery.png)
-
+<p align="center">
+  <img src="ScreenShots/05-operations-delivery.png" width="70%" />
+</p>
 
 
 
