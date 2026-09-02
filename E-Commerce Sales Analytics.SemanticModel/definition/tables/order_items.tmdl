@@ -1,0 +1,145 @@
+table order_items
+	lineageTag: 9eb3f1c9-54b3-496c-900f-f98d719fa4e5
+
+	column order_id
+		dataType: string
+		lineageTag: 68672b73-89a7-4356-8c6e-cfc084f21524
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		lineageTag: da21fbe0-db50-482a-bb6e-44c2c124496c
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 49d1efb8-426b-4548-a210-02129e36827c
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit_price
+		dataType: double
+		lineageTag: 7cac37b8-f226-4462-9a5c-9dc0e88d2222
+		summarizeBy: sum
+		sourceColumn: unit_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column discount_percentage
+		dataType: double
+		lineageTag: 33a620f3-10d2-4653-aa76-174323f83a24
+		summarizeBy: sum
+		sourceColumn: discount_percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column discount_amount
+		dataType: double
+		lineageTag: 6510d992-790c-4658-8baa-56d42faf65d9
+		summarizeBy: sum
+		sourceColumn: discount_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gross_sales
+		dataType: double
+		lineageTag: fba1b574-e050-4463-b212-1ee57fc7bec6
+		summarizeBy: sum
+		sourceColumn: gross_sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tax_amount
+		dataType: double
+		lineageTag: 2e53be68-92dd-4173-b172-a41037905a45
+		summarizeBy: sum
+		sourceColumn: tax_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column shipping_cost
+		dataType: double
+		lineageTag: 5296b0b7-2cae-4257-9a69-8f002fd0f423
+		summarizeBy: sum
+		sourceColumn: shipping_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column net_sales
+		dataType: double
+		lineageTag: 4070ebef-2417-4ca9-af82-139c5006c602
+		summarizeBy: sum
+		sourceColumn: net_sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column product_cost
+		dataType: double
+		lineageTag: 2a38285f-fc2c-4219-985c-a70935db0ddc
+		summarizeBy: sum
+		sourceColumn: product_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column profit
+		dataType: double
+		lineageTag: 249e87e7-bfa0-456c-b13e-abd941dac187
+		summarizeBy: sum
+		sourceColumn: profit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Discount Band' =
+			
+			SWITCH(
+			    TRUE(),
+			    'order_items'[discount_percentage] < 0.10, "0–9%",
+			    'order_items'[discount_percentage] < 0.20, "10–19%",
+			    'order_items'[discount_percentage] < 0.30, "20–29%",
+			    'order_items'[discount_percentage] < 0.40, "30–39%",
+			    "40%+"
+			)
+		lineageTag: abfe219f-f37b-4100-894d-5fe1b433bac5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition order_items = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("E:\Datamites Notes\MySql\Power-BI\order_items.csv"), [Delimiter = ",", Columns = 12, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"order_id", type text}, {"product_id", type text}, {"quantity", Int64.Type}, {"unit_price", type number}, {"discount_percentage", type number}, {"discount_amount", type number}, {"gross_sales", type number}, {"tax_amount", type number}, {"shipping_cost", type number}, {"net_sales", type number}, {"product_cost", type number}, {"profit", type number}}, "en-US")
+				in
+				  #"Changed column type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,87 @@
+table DateTable
+	lineageTag: 275a4a74-bcdc-4d87-853b-b0c93ed02d33
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: 35558f5c-c8f4-4e0f-91e4-c1e1385fc2e3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: 08cd3021-9efa-4e54-9c9f-ebc17752b8a4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		formatString: 0
+		lineageTag: 2dcd7f6f-4562-41cd-a9b1-24ab53e4901e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		lineageTag: 928ef570-2bc7-4c85-ba66-2b6505aa935f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Month'
+		lineageTag: 2ebd0fff-e6a0-4b23-ad8c-56d41da3722f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: 2d9d96e1-66ff-4357-9d94-3af93d400ac3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Start' =
+			
+			DATE(
+			    YEAR('DateTable'[Date]),
+			    MONTH('DateTable'[Date]),
+			    1
+			)
+		formatString: General Date
+		lineageTag: 931a8481-7f39-4cf9-9d68-40300bfd6020
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DateTable = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    CALENDAR(
+				        MIN('ecommerce_sales_customer_analytics_150k'[order_date]),
+				        MAX('ecommerce_sales_customer_analytics_150k'[order_date])
+				    ),
+				    "Year", YEAR([Date]),
+				    "Month Number", MONTH([Date]),
+				    "Month", FORMAT([Date], "MMM"),
+				    "Year Month", FORMAT([Date], "YYYY-MM"),
+				    "Quarter", "Q" & FORMAT([Date], "Q")
+				)
+
+	annotation PBI_Id = ca11b9f1bf3d45bdaf464386d365d940
+

@@ -1,0 +1,109 @@
+table customer_master
+	lineageTag: b26d912c-891a-48c2-a677-c910edb95c51
+
+	column customer_id
+		dataType: string
+		lineageTag: 26173b0e-a9b9-48b2-8cc9-2e0882d52955
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_name
+		dataType: string
+		lineageTag: c7cd82fe-f408-41c0-922b-501f091b7ef7
+		summarizeBy: none
+		sourceColumn: customer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_age
+		dataType: int64
+		formatString: 0
+		lineageTag: f3696572-f5a6-48d1-9b5e-10326c5d3b3a
+		summarizeBy: none
+		sourceColumn: customer_age
+
+		annotation SummarizationSetBy = Automatic
+
+	column gender
+		dataType: string
+		lineageTag: c4ecfe97-cb35-40a3-89a5-09a590a1042f
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_segment
+		dataType: string
+		lineageTag: b99250d2-c25f-4453-9b0c-0bb103937c22
+		summarizeBy: none
+		sourceColumn: customer_segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_city
+		dataType: string
+		lineageTag: f37d4e01-dca5-4181-995c-fa806f75736b
+		summarizeBy: none
+		sourceColumn: customer_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_state
+		dataType: string
+		lineageTag: 23df9c19-d5ff-406f-b0d1-d439a3b23954
+		summarizeBy: none
+		sourceColumn: customer_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_country
+		dataType: string
+		lineageTag: 304de6a3-8e70-419d-a35a-1076f4427d1c
+		summarizeBy: none
+		sourceColumn: customer_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: 11a8ce52-4c71-4906-8d8c-5f8a8dbcf973
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_postal_code
+		dataType: int64
+		formatString: 0
+		lineageTag: 16470a03-1e88-459c-8781-8bfc6af92a9a
+		summarizeBy: none
+		sourceColumn: customer_postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_acquisition_cost
+		dataType: double
+		lineageTag: 63a53da9-3e28-42af-8c73-e5ab22a41233
+		summarizeBy: none
+		sourceColumn: customer_acquisition_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition customer_master = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("E:\Datamites Notes\MySql\Power-BI\customer_master.csv"), [Delimiter = ",", Columns = 11, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"customer_id", type text}, {"customer_name", type text}, {"customer_age", Int64.Type}, {"gender", type text}, {"customer_segment", type text}, {"customer_city", type text}, {"customer_state", type text}, {"customer_country", type text}, {"region", type text}, {"customer_postal_code", Int64.Type}, {"customer_acquisition_cost", type number}}, "en-US")
+				in
+				  #"Changed column type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,418 @@
+table ecommerce_sales_customer_analytics_150k
+	lineageTag: 1d3df636-dd90-4418-8cbd-13c672aeffa4
+
+	column order_id
+		dataType: string
+		lineageTag: e1a8a209-826c-484e-9e79-a38c1688a479
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0f53654b-9c7a-49e8-9acf-e508fb80865a
+		summarizeBy: none
+		sourceColumn: order_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column order_time
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 8e865093-ae98-4236-b8c0-fe4aadf7b3c5
+		summarizeBy: none
+		sourceColumn: order_time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column order_status
+		dataType: string
+		lineageTag: 7323db42-9b79-4b14-a163-541c44dface4
+		summarizeBy: none
+		sourceColumn: order_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column sales_channel
+		dataType: string
+		lineageTag: cd6de5fe-0636-41da-8809-58b12e08afdd
+		summarizeBy: none
+		sourceColumn: sales_channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: 5d0c35d4-8f7b-45a8-be24-664cf2b8d245
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_name
+		dataType: string
+		lineageTag: 25b243d0-da6b-431e-ac84-bbd83c31bbc8
+		summarizeBy: none
+		sourceColumn: customer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_age
+		dataType: int64
+		formatString: 0
+		lineageTag: 01346b7f-8872-4045-8a84-d64cc35f0939
+		summarizeBy: sum
+		sourceColumn: customer_age
+
+		annotation SummarizationSetBy = Automatic
+
+	column gender
+		dataType: string
+		lineageTag: 6a17e048-d625-4dfc-ba41-ca7eb3bc4a3e
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_segment
+		dataType: string
+		lineageTag: f37a9168-e3b2-4160-9f6d-44cdfc6657ab
+		summarizeBy: none
+		sourceColumn: customer_segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_type
+		dataType: string
+		lineageTag: dc045fdf-1813-4853-9b66-f47fb53b24ea
+		summarizeBy: none
+		sourceColumn: customer_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_city
+		dataType: string
+		lineageTag: 8320da06-f164-4619-9d58-5cecedf2a4bd
+		summarizeBy: none
+		sourceColumn: customer_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_state
+		dataType: string
+		lineageTag: 4b984841-cc3a-4ad0-8eb1-84b8bda5b24c
+		summarizeBy: none
+		sourceColumn: customer_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_country
+		dataType: string
+		lineageTag: 12a6316c-7008-4855-a6ba-546098b06e11
+		summarizeBy: none
+		sourceColumn: customer_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: e5c5a011-88da-470b-bd90-8461c5c3dcfe
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_postal_code
+		dataType: int64
+		formatString: 0
+		lineageTag: ff585288-3a5e-43c7-b24a-ad9ce3e2480d
+		summarizeBy: sum
+		sourceColumn: customer_postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_method
+		dataType: string
+		lineageTag: 2304361f-6d20-477d-8df7-3a9368d1f54a
+		summarizeBy: none
+		sourceColumn: payment_method
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_status
+		dataType: string
+		lineageTag: 21862755-970e-4c11-b2b8-2190e5629842
+		summarizeBy: none
+		sourceColumn: payment_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency
+		dataType: string
+		lineageTag: 125c257d-02d7-409b-8e0d-0eba4f03dd7f
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_method
+		dataType: string
+		lineageTag: 78a1c1db-48c7-42bb-a2e9-fbfa2c72121f
+		summarizeBy: none
+		sourceColumn: shipping_method
+
+		annotation SummarizationSetBy = Automatic
+
+	column warehouse
+		dataType: string
+		lineageTag: 64c4921c-1556-4b45-af2a-ac8f32cb6f74
+		summarizeBy: none
+		sourceColumn: warehouse
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 553b4413-77e9-4521-ac64-fdc0490e69f0
+		summarizeBy: sum
+		sourceColumn: delivery_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column estimated_delivery_days
+		dataType: int64
+		formatString: 0
+		lineageTag: 28d7e354-c6e9-4a39-a070-9c3b0c8194f2
+		summarizeBy: sum
+		sourceColumn: estimated_delivery_days
+
+		annotation SummarizationSetBy = Automatic
+
+	column delivery_status
+		dataType: string
+		lineageTag: d8094f71-6edb-430e-846a-46996a602ace
+		summarizeBy: none
+		sourceColumn: delivery_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column return_status
+		dataType: string
+		lineageTag: 61d41209-7f8d-4afe-bb3e-e7cb4d4b5e40
+		summarizeBy: none
+		sourceColumn: return_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column return_reason
+		dataType: string
+		lineageTag: d064c78a-ebe3-4a28-96fa-d5d92e031b95
+		summarizeBy: none
+		sourceColumn: return_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_rating
+		dataType: double
+		lineageTag: a732536d-f645-48f4-bcd9-bf276b837f57
+		summarizeBy: sum
+		sourceColumn: customer_rating
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column review_sentiment
+		dataType: string
+		lineageTag: f026d89c-a32d-4ddd-b8b8-20fba9a705ee
+		summarizeBy: none
+		sourceColumn: review_sentiment
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_review
+		dataType: string
+		lineageTag: d665c46d-2778-4e5c-adb2-ba704294c42d
+		summarizeBy: none
+		sourceColumn: customer_review
+
+		annotation SummarizationSetBy = Automatic
+
+	column marketing_channel
+		dataType: string
+		lineageTag: 53abb9e2-1e7d-4b3c-8b3d-20a275001ac4
+		summarizeBy: none
+		sourceColumn: marketing_channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column campaign_name
+		dataType: string
+		lineageTag: 4075881a-bda5-497f-9d12-25a2c0562053
+		summarizeBy: none
+		sourceColumn: campaign_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column coupon_code
+		dataType: string
+		lineageTag: df4af5ab-d808-4a7c-a2f7-5e6018792d77
+		summarizeBy: none
+		sourceColumn: coupon_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column loyalty_points_earned
+		dataType: int64
+		formatString: 0
+		lineageTag: dd275153-d67e-4cef-babc-d34f00209678
+		summarizeBy: sum
+		sourceColumn: loyalty_points_earned
+
+		annotation SummarizationSetBy = Automatic
+
+	column loyalty_points_redeemed
+		dataType: int64
+		formatString: 0
+		lineageTag: 82463409-4390-48cc-98ac-7243e18a61e4
+		summarizeBy: sum
+		sourceColumn: loyalty_points_redeemed
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 0016c1d1-54fe-4a31-ad22-1b29df92b54d
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column gross_sales
+		dataType: double
+		lineageTag: 2536eacf-76f8-4dbd-a0e5-e763577aad3f
+		summarizeBy: sum
+		sourceColumn: gross_sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column discount_amount
+		dataType: double
+		lineageTag: 344baf97-4c04-437a-9c84-53f1660dffe5
+		summarizeBy: sum
+		sourceColumn: discount_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tax_amount
+		dataType: double
+		lineageTag: 43cbebe1-c5c7-4729-abb1-47c2fab42967
+		summarizeBy: sum
+		sourceColumn: tax_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column shipping_cost
+		dataType: double
+		lineageTag: 58eeb349-a7c7-4a7f-919f-3ed86c507aa4
+		summarizeBy: sum
+		sourceColumn: shipping_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column net_sales
+		dataType: double
+		lineageTag: 5cd05eb2-457b-490c-9e0a-836bef4f80b7
+		summarizeBy: sum
+		sourceColumn: net_sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column product_cost
+		dataType: double
+		lineageTag: 1f3277b8-bc18-4762-92ae-dba37b26cd9e
+		summarizeBy: sum
+		sourceColumn: product_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column profit
+		dataType: double
+		lineageTag: 8652a05e-053b-4ece-b7ad-cf2dd44a350b
+		summarizeBy: sum
+		sourceColumn: profit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column profit_margin_percentage
+		dataType: double
+		lineageTag: 09daf672-b90f-462a-8233-b48b7ee49371
+		summarizeBy: sum
+		sourceColumn: profit_margin_percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column customer_lifetime_value
+		dataType: double
+		lineageTag: dea2f603-cb2e-492c-87f5-16aa230ce8bc
+		summarizeBy: sum
+		sourceColumn: customer_lifetime_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_repeat_customer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 224e2e29-6d77-4dfa-918a-8a72e0c16406
+		summarizeBy: none
+		sourceColumn: is_repeat_customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_order_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 7be00361-3153-4a18-a9b0-6c6cb810a483
+		summarizeBy: sum
+		sourceColumn: customer_order_count
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ecommerce_sales_customer_analytics_150k = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("E:\Datamites Notes\MySql\Power-BI\ecommerce_sales_customer_analytics_150k.csv"), [Delimiter = ",", Columns = 46, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"order_id", type text}, {"order_date", type date}, {"order_time", type time}, {"order_status", type text}, {"sales_channel", type text}, {"customer_id", type text}, {"customer_name", type text}, {"customer_age", Int64.Type}, {"gender", type text}, {"customer_segment", type text}, {"customer_type", type text}, {"customer_city", type text}, {"customer_state", type text}, {"customer_country", type text}, {"region", type text}, {"customer_postal_code", Int64.Type}, {"payment_method", type text}, {"payment_status", type text}, {"currency", type text}, {"shipping_method", type text}, {"warehouse", type text}, {"delivery_days", Int64.Type}, {"estimated_delivery_days", Int64.Type}, {"delivery_status", type text}, {"return_status", type text}, {"return_reason", type text}, {"customer_rating", type number}, {"review_sentiment", type text}, {"customer_review", type text}, {"marketing_channel", type text}, {"campaign_name", type text}, {"coupon_code", type text}, {"loyalty_points_earned", Int64.Type}, {"loyalty_points_redeemed", Int64.Type}, {"quantity", Int64.Type}, {"gross_sales", type number}, {"discount_amount", type number}, {"tax_amount", type number}, {"shipping_cost", type number}, {"net_sales", type number}, {"product_cost", type number}, {"profit", type number}, {"profit_margin_percentage", type number}, {"customer_lifetime_value", type number}, {"is_repeat_customer", type logical}, {"customer_order_count", Int64.Type}}, "en-US")
+				in
+				  #"Changed column type"
+
+	annotation PBI_ResultType = Table
+

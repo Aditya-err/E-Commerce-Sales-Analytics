@@ -1,0 +1,247 @@
+table _Measure
+	lineageTag: a5ba52e5-d5f1-430a-b7b3-a692b65d473c
+
+	measure 'Total Revenue' =
+			
+			SUM('ecommerce_sales_customer_analytics_150k'[net_sales])
+		lineageTag: ee92630b-3d47-438c-b6e5-4f3400400562
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Profit' =
+			
+			SUM('ecommerce_sales_customer_analytics_150k'[profit])
+		lineageTag: e08a0514-f444-497c-bec6-016129957a00
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Orders' =
+			
+			DISTINCTCOUNT('ecommerce_sales_customer_analytics_150k'[order_id])
+		formatString: 0
+		lineageTag: b446fdac-31bf-48cc-a40f-5e95bec145d5
+
+	measure 'Total Customers' =
+			
+			DISTINCTCOUNT('customer_master'[customer_id])
+		formatString: 0
+		lineageTag: a2eec3e2-6cba-4cde-8468-c40dbb063050
+
+	measure 'Average Order Value' =
+			
+			DIVIDE(
+			    [Total Revenue],
+			    [Total Orders]
+			)
+		lineageTag: 702b856c-1408-4dba-a595-5b79c2ac2b83
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Profit Margin' =
+			
+			DIVIDE(
+			    [Total Profit],
+			    [Total Revenue]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 0202874a-800b-4a02-a5d1-cd823b0ed55a
+
+	measure 'Orders per Customer' =
+			
+			DIVIDE(
+			    [Total Orders],
+			    [Total Customers]
+			)
+		lineageTag: adf0f148-f948-4116-b271-0d6e2ed36a5b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue Previous Year' =
+			
+			CALCULATE(
+			    [Total Revenue],
+			    DATEADD('DateTable'[Date], -1, YEAR)
+			)
+		lineageTag: eabee909-993f-4f4e-b568-9f6e46ec65cb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Revenue YoY %' =
+			
+			DIVIDE(
+			    [Total Revenue] - [Revenue Previous Year],
+			    [Revenue Previous Year]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 65431744-6a1f-408e-bb0a-e422f0aa7a25
+
+	measure 'Profit Previous Year' =
+			
+			CALCULATE(
+			    [Total Profit],
+			    DATEADD('DateTable'[Date], -1, YEAR)
+			)
+		lineageTag: ccd2789a-50e2-4baf-989e-38499015a54c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Profit YoY %' =
+			
+			DIVIDE(
+			    [Total Profit] - [Profit Previous Year],
+			    [Profit Previous Year]
+			)
+		lineageTag: a47edfbb-8a0a-4a38-920d-eb91baef898f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Repeat Customers' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('ecommerce_sales_customer_analytics_150k'[customer_id]),
+			    'ecommerce_sales_customer_analytics_150k'[is_repeat_customer] = TRUE()
+			)
+		formatString: 0
+		lineageTag: 72a1566a-4022-4fb4-a3e6-49fe5e7bf4d9
+
+	measure 'Repeat Customer %' =
+			
+			DIVIDE(
+			    [Repeat Customers],
+			    [Total Customers]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 5a53ed11-3dc1-4dd0-8ba9-5c5a4e31879b
+
+	measure 'Average Customer Lifetime Value' =
+			
+			AVERAGE('ecommerce_sales_customer_analytics_150k'[customer_lifetime_value])
+		lineageTag: 66e912cb-5dfc-4d8c-9e20-5eab1d90f08b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Returned Orders' =
+			
+			CALCULATE(
+			    [Total Orders],
+			    'ecommerce_sales_customer_analytics_150k'[return_status] = "Returned"
+			)
+		formatString: 0
+		lineageTag: 6c9b3b34-aa73-419d-be0d-8ba66cba7404
+
+	measure 'Return Rate' =
+			
+			DIVIDE(
+			    [Returned Orders],
+			    [Total Orders]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: a20096cd-3853-45ce-8e3b-fe6816b52261
+
+	measure 'Cancelled Orders' =
+			
+			CALCULATE(
+			    [Total Orders],
+			    'ecommerce_sales_customer_analytics_150k'[order_status] = "Cancelled"
+			)
+		formatString: 0
+		lineageTag: 7df15087-62ce-4b1a-baef-811ebb44359d
+
+	measure 'Cancellation Rate' =
+			
+			DIVIDE(
+			    [Cancelled Orders],
+			    [Total Orders]
+			)
+		lineageTag: b4d133e4-ca49-4cf6-8ae5-7592ab151c45
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Delivery Days' =
+			
+			AVERAGE(
+			    'ecommerce_sales_customer_analytics_150k'[delivery_days]
+			)
+		lineageTag: 4e646fd9-2679-4feb-8be9-65126308c822
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Estimated Delivery Days' =
+			
+			AVERAGE(
+			    'ecommerce_sales_customer_analytics_150k'[estimated_delivery_days]
+			)
+		lineageTag: 78310bcf-a4bc-4c12-8f78-dd2aa09e33a3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Delivery Delay' =
+			
+			[Average Delivery Days] - [Average Estimated Delivery Days]
+		lineageTag: 2c69cc38-4819-4abf-a853-2c3b024a6078
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Acquisition Cost' =
+			
+			AVERAGE(
+			    'customer_master'[customer_acquisition_cost]
+			)
+		lineageTag: a0003bfc-2a75-4935-88b1-1020081601c3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Product Revenue' =
+			
+			SUM(
+			    'order_items'[net_sales]
+			)
+		lineageTag: 874d8b9d-577a-4ed0-98f9-f9e201d56155
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Product Profit' =
+			
+			SUM(
+			    'order_items'[profit]
+			)
+		lineageTag: 59e88582-038a-4f2e-adfa-0edb4941abcf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Product Orders' =
+			
+			DISTINCTCOUNT(
+			    'order_items'[order_id]
+			)
+		formatString: 0
+		lineageTag: 8ba728a5-0880-40ec-a34b-66ba17e4f5b2
+
+	measure 'Total Products' =
+			
+			DISTINCTCOUNT('product_catalog'[product_id])
+		formatString: 0
+		lineageTag: 16cb1497-a1c8-40b5-903f-44c889ae568f
+
+	column Measure
+		dataType: string
+		lineageTag: 600c10f4-7eef-4306-9f81-744f62d3c1b1
+		summarizeBy: none
+		sourceColumn: Measure
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measure = m
+		mode: import
+		source =
+				let
+				  Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Measure = _t])
+				in
+				  Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

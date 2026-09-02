@@ -1,0 +1,16 @@
+relationship AutoDetected_e7231611-1dfa-4e0d-aaa0-f51b775b837e
+	fromColumn: ecommerce_sales_customer_analytics_150k.customer_id
+	toColumn: customer_master.customer_id
+
+relationship AutoDetected_406fad19-e151-4b63-9f20-cf7470e1f494
+	fromColumn: order_items.order_id
+	toColumn: ecommerce_sales_customer_analytics_150k.order_id
+
+relationship AutoDetected_145aa109-4596-4e39-8b9b-6b03b14df3a3
+	fromColumn: order_items.product_id
+	toColumn: product_catalog.product_id
+
+relationship 2611a3e7-e613-ebb4-978f-41411ba99800
+	fromColumn: ecommerce_sales_customer_analytics_150k.order_date
+	toColumn: DateTable.Date
+

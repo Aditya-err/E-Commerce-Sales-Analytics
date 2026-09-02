@@ -1,0 +1,93 @@
+table product_catalog
+	lineageTag: 9278f39b-cd9c-49c5-add7-81ce1df992a6
+
+	column product_id
+		dataType: string
+		lineageTag: e508ef38-339b-46c3-b8a7-a8f6a4b0be2e
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: ae82d616-50d6-42b5-a8b0-023a05f67c40
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_category
+		dataType: string
+		lineageTag: 6b65ce90-4f4a-48c8-aec4-b616bb053318
+		summarizeBy: none
+		sourceColumn: product_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_subcategory
+		dataType: string
+		lineageTag: 982b4af0-e72a-4d5b-bacc-d1bc0fed6bd1
+		summarizeBy: none
+		sourceColumn: product_subcategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand
+		dataType: string
+		lineageTag: bbfbca87-be73-402a-b12b-54e8ecc1e60c
+		summarizeBy: none
+		sourceColumn: brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column supplier
+		dataType: string
+		lineageTag: 7f65761d-4783-4a5a-93b7-9a6b3c182db3
+		summarizeBy: none
+		sourceColumn: supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column unit_price
+		dataType: double
+		lineageTag: bad76916-bbce-4b55-9048-129068aa7c7f
+		summarizeBy: none
+		sourceColumn: unit_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column product_cost
+		dataType: double
+		lineageTag: 9b18ee34-8426-49b5-8348-76e13215ac41
+		summarizeBy: none
+		sourceColumn: product_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column product_rating
+		dataType: double
+		lineageTag: 2779e0fa-aac2-40b4-8c48-a75a04f96634
+		summarizeBy: none
+		sourceColumn: product_rating
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition product_catalog = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("E:\Datamites Notes\MySql\Power-BI\product_catalog.csv"), [Delimiter = ",", Columns = 9, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				  #"Promoted headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"product_id", type text}, {"product_name", type text}, {"product_category", type text}, {"product_subcategory", type text}, {"brand", type text}, {"supplier", type text}, {"unit_price", type number}, {"product_cost", type number}, {"product_rating", type number}}, "en-US")
+				in
+				  #"Changed column type"
+
+	annotation PBI_ResultType = Table
+
